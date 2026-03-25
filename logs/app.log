@@ -11,3 +11,59 @@
 2026-03-25 13:21:12 | INFO     | src.data.ingestion:basic_cleaning:21 - Running basic cleaning
 2026-03-25 13:21:12 | INFO     | src.data.ingestion:basic_cleaning:31 - Dataset shape after cleaning: (10, 10)
 2026-03-25 13:21:12 | INFO     | src.data.validation:validate_dataframe:42 - Validation report: {'row_count': 10, 'column_count': 10, 'missing_columns': [], 'null_counts': {'transaction_id': 0, 'customer_id': 0, 'merchant_id': 0, 'amount': 0, 'currency': 0, 'country': 0, 'device_type': 0, 'ip_address': 0, 'timestamp': 0, 'is_fraud': 0}, 'duplicate_transaction_ids': 0, 'invalid_amount_rows': 0, 'invalid_target_rows': 0, 'status': 'success'}
+2026-03-25 14:34:58 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:35:09 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:35:09 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:35:10 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:35:10 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:35:10 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:35:43 | INFO     | __main__:run_training_pipeline:10 - Training pipeline started
+2026-03-25 14:35:43 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:36:10 | INFO     | __main__:run_scoring_pipeline:10 - Scoring pipeline started
+2026-03-25 14:36:10 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:44:44 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:44:54 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:44:54 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:44:54 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:44:55 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-25 14:44:55 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShieldFraudDetectionPlatform\finshield-fraud-detection-platform\data\raw\transactions_sample.csv
+2026-03-26 02:48:13 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 02:48:28 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 02:48:29 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 02:48:29 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 02:48:29 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 02:48:30 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 02:53:53 | INFO     | __main__:run_training_pipeline:10 - Training pipeline started
+2026-03-26 02:53:53 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 02:58:47 | INFO     | __main__:run_scoring_pipeline:10 - Scoring pipeline started
+2026-03-26 02:58:47 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 03:45:35 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 03:45:42 | INFO     | src.data.ingestion:read_csv_data:10 - Loaded dataset with shape: (10, 10)
+2026-03-26 03:45:42 | INFO     | src.data.ingestion:basic_cleaning:21 - Running basic cleaning
+2026-03-26 03:45:49 | INFO     | src.data.ingestion:basic_cleaning:37 - Dataset shape after cleaning: (10, 10)
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:read_csv_data:10 - Loaded dataset with shape: (10, 10)
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:basic_cleaning:21 - Running basic cleaning
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:basic_cleaning:37 - Dataset shape after cleaning: (10, 10)
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:read_csv_data:10 - Loaded dataset with shape: (10, 10)
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:basic_cleaning:21 - Running basic cleaning
+2026-03-26 03:45:55 | INFO     | src.data.ingestion:basic_cleaning:37 - Dataset shape after cleaning: (10, 10)
+2026-03-26 03:45:55 | INFO     | features.batch_features:build_batch_features:132 - Starting batch feature engineering
+2026-03-26 03:46:07 | INFO     | features.batch_features:build_batch_features:170 - Batch feature engineering completed with shape: (10, 33)
+2026-03-26 03:46:07 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 03:46:07 | INFO     | src.data.ingestion:read_csv_data:10 - Loaded dataset with shape: (10, 10)
+2026-03-26 03:46:07 | INFO     | src.data.ingestion:basic_cleaning:21 - Running basic cleaning
+2026-03-26 03:46:07 | INFO     | src.data.ingestion:basic_cleaning:37 - Dataset shape after cleaning: (10, 10)
+2026-03-26 03:46:07 | INFO     | features.batch_features:build_batch_features:132 - Starting batch feature engineering
+2026-03-26 03:46:08 | INFO     | features.batch_features:build_batch_features:170 - Batch feature engineering completed with shape: (10, 33)
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:read_csv_data:10 - Loaded dataset with shape: (10, 10)
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:basic_cleaning:21 - Running basic cleaning
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:basic_cleaning:37 - Dataset shape after cleaning: (10, 10)
+2026-03-26 03:46:08 | INFO     | features.batch_features:build_batch_features:132 - Starting batch feature engineering
+2026-03-26 03:46:08 | INFO     | features.batch_features:build_batch_features:170 - Batch feature engineering completed with shape: (10, 33)
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:read_csv_data:8 - Reading data from C:\Users\Thabang Rakeng\OneDrive\Desktop\FinShield\fraud-detection\data\raw\transactions_sample.csv
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:read_csv_data:10 - Loaded dataset with shape: (10, 10)
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:basic_cleaning:21 - Running basic cleaning
+2026-03-26 03:46:08 | INFO     | src.data.ingestion:basic_cleaning:37 - Dataset shape after cleaning: (10, 10)

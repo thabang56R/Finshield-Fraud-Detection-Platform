@@ -25,8 +25,14 @@ def basic_cleaning(df: pd.DataFrame) -> pd.DataFrame:
     df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
     df["is_fraud"] = pd.to_numeric(df["is_fraud"], errors="coerce").fillna(0).astype(int)
 
+    df["currency"] = df["currency"].astype(str).str.upper().str.strip()
+    df["country"] = df["country"].astype(str).str.upper().str.strip()
+    df["device_type"] = df["device_type"].astype(str).str.lower().str.strip()
+    df["ip_address"] = df["ip_address"].astype(str).str.strip()
+
     df = df.dropna(subset=["transaction_id", "customer_id", "merchant_id", "amount", "timestamp"])
     df = df.drop_duplicates(subset=["transaction_id"])
+    df = df.sort_values("timestamp").reset_index(drop=True)
 
     logger.info(f"Dataset shape after cleaning: {df.shape}")
     return df

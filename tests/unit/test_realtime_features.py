@@ -1,18 +1,13 @@
-import pandas as pd
-
 from features.realtime_features import build_realtime_features
-from src.common.logger import logger
 from src.common.paths import RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data
 
 
-def run_scoring_pipeline() -> dict:
-    logger.info("Scoring pipeline started")
-
+def test_build_realtime_features():
     history_df = read_csv_data(str(RAW_DATA_DIR / "transactions_sample.csv"))
     history_df = basic_cleaning(history_df)
 
-    sample_payload = {
+    payload = {
         "transaction_id": "txn_live_001",
         "customer_id": "cust_002",
         "merchant_id": "mrch_002",
@@ -24,17 +19,13 @@ def run_scoring_pipeline() -> dict:
         "timestamp": "2026-03-21 10:30:00",
     }
 
-    realtime_features = build_realtime_features(
-        payload=sample_payload,
+    features = build_realtime_features(
+        payload=payload,
         customer_history=history_df,
         merchant_history=history_df,
     )
 
-    logger.info(f"Realtime features generated: {realtime_features}")
-    logger.info("Scoring pipeline completed")
-
-    return realtime_features
-
-
-if __name__ == "__main__":
-    run_scoring_pipeline()
+    assert features["customer_id"] == "cust_002"
+    assert "customer_prev_txn_count" in features
+    assert "merchant_prev_fraud_rate" in features
+    assert "is_high_amount" in features

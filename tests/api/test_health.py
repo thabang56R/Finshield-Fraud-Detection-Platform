@@ -10,3 +10,24 @@ def test_health_endpoint():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "ok"
+
+
+def test_realtime_feature_endpoint():
+    payload = {
+        "transaction_id": "txn_live_001",
+        "customer_id": "cust_002",
+        "merchant_id": "mrch_002",
+        "amount": 12000.0,
+        "currency": "ZAR",
+        "country": "ZA",
+        "device_type": "desktop",
+        "ip_address": "196.10.1.2",
+        "timestamp": "2026-03-21 10:30:00",
+    }
+
+    response = client.post("/features/realtime", json=payload)
+    assert response.status_code == 200
+
+    data = response.json()
+    assert "features" in data
+    assert "merchant_prev_fraud_rate" in data["features"]

@@ -16,3 +16,5 @@ REQUIRED_TRANSACTION_COLUMNS = [
     "timestamp",
     "is_fraud",
 ]
+
+HIGH_AMOUNT_THRESHOLD = 5000.0
