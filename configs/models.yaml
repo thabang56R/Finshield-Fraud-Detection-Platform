@@ -1,0 +1,8 @@
+model:
+  type: xgboost
+  baseline:
+    enabled: true
+    type: logistic_regression
+  target: is_fraud
+  test_size: 0.2
+  random_state: 42

@@ -1,0 +1,69 @@
+Metadata-Version: 2.4
+Name: finshield-fraud-detection-platform
+Version: 0.1.0
+Summary: Production-style fraud detection platform for fintech using Python, FastAPI, ML, and MLOps.
+Author: Thabang Rakeng
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn[standard]>=0.30.0
+Requires-Dist: pandas>=2.2.2
+Requires-Dist: numpy>=1.26.4
+Requires-Dist: pydantic>=2.8.2
+Requires-Dist: pydantic-settings>=2.4.0
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: scikit-learn>=1.5.1
+Requires-Dist: xgboost>=2.1.1
+Requires-Dist: joblib>=1.4.2
+Requires-Dist: python-dotenv>=1.0.1
+Requires-Dist: loguru>=0.7.2
+Requires-Dist: great-expectations>=1.0.0
+Requires-Dist: pytest>=8.3.2
+Requires-Dist: httpx>=0.27.0
+Requires-Dist: jupyter>=1.0.0
+Requires-Dist: notebook>=7.2.1
+Provides-Extra: dev
+Requires-Dist: black>=24.8.0; extra == "dev"
+Requires-Dist: ruff>=0.6.2; extra == "dev"
+Requires-Dist: isort>=5.13.2; extra == "dev"
+Requires-Dist: mypy>=1.11.1; extra == "dev"
+
+# FinShield Fraud Detection Platform
+
+A production-style fraud detection platform for fintech use cases, built with Python, FastAPI, machine learning, and MLOps principles.
+
+## Vision
+
+FinShield aims to simulate how real fintech fraud systems are structured in practice: reliable data ingestion, validation, feature engineering, model pipelines, API scoring, monitoring, and explainability.
+
+## Section 1 Completed
+
+- production-ready project structure
+- config management
+- logging
+- ingestion and validation pipeline
+- FastAPI starter service
+- feature engineering starter modules
+- unit, integration, and API tests
+- Docker and GitHub Actions CI
+
+## Stack
+
+- Python
+- FastAPI
+- Pandas
+- Scikit-learn
+- XGBoost
+- Great Expectations
+- Pytest
+- Docker
+- GitHub Actions
+
+## Run locally
+
+```bash
+pip install -e .[dev]
+pytest
+python pipelines/data_validation.py
+uvicorn apps.api.main:app --reload
+```

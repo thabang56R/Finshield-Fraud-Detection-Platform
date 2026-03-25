@@ -1,0 +1,9 @@
+features:
+  numerical:
+    - amount
+  categorical:
+    - currency
+    - country
+    - device_type
+  datetime:
+    - timestamp

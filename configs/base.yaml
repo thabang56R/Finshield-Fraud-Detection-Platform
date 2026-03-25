@@ -1,0 +1,18 @@
+app:
+  name: FinShield Fraud Detection Platform
+  env: development
+  debug: true
+
+api:
+  host: 0.0.0.0
+  port: 8000
+
+logging:
+  level: INFO
+
+data:
+  raw_file: data/raw/transactions_sample.csv
+  target_column: is_fraud
+
+experiment:
+  random_state: 42
