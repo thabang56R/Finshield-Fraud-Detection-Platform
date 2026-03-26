@@ -518,7 +518,7 @@ This project shows ability in:
 
 **Thabang Rakeng**
 
-> Fullstack(MERN, dotNET| Ai/Ml developers
+> Fullstack (MERN, dotnet) | Ai/Ml developers
 
 ---
 
