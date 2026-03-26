@@ -536,12 +536,6 @@ This project is intentionally built to demonstrate:
 
 
 
----
-
-# ⭐ Give It a Star
-
-If this helped or impressed you, ⭐ the repo.
-
 
 ---
 
