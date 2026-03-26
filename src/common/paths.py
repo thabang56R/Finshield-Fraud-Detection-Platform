@@ -1,6 +1,27 @@
 from pathlib import Path
 
-ROOT_DIR = Path(__file__).resolve().parents[2]
+
+def _find_project_root() -> Path:
+    """
+    Find the real project root by looking upward for files/folders
+    that should exist in the repository.
+    Falls back to the current working directory if needed.
+    """
+    candidates = [Path.cwd(), *Path(__file__).resolve().parents]
+
+    for candidate in candidates:
+        if (
+            (candidate / "pyproject.toml").exists()
+            and (candidate / "configs").exists()
+            and (candidate / "src").exists()
+        ):
+            return candidate
+
+    # fallback
+    return Path.cwd()
+
+
+ROOT_DIR = _find_project_root()
 
 APPS_DIR = ROOT_DIR / "apps"
 CONFIGS_DIR = ROOT_DIR / "configs"
