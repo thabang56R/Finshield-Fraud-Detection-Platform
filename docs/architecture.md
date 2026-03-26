@@ -2,7 +2,7 @@
 
 FinShield is a production-style fraud detection platform designed for fintech fraud use cases.
 
-## Section 5 Scope
+## Section 6 Scope
 - ingestion and cleaning
 - offline feature engineering
 - realtime feature engineering
@@ -10,8 +10,8 @@ FinShield is a production-style fraud detection platform designed for fintech fr
 - weighted rule scoring
 - supervised fraud model training
 - anomaly model training
-- saved model artifacts
-- supervised and anomaly inference APIs
+- hybrid score fusion
+- unified hybrid scoring API
 
 ## High-Level Flow
 
@@ -26,12 +26,18 @@ Raw Transactions
 → Isolation Forest  
 → Saved Artifacts  
 → Realtime Feature Builder  
-→ Rules Engine / Model Inference / Anomaly Inference  
+→ Rules Engine + Model Inference + Anomaly Inference  
+→ Hybrid Weighted Score  
+→ Decision: Approve / Review / Block  
 → Fraud Scoring API
 
-## Saved Artifacts
-- logistic_regression_model.joblib
-- xgboost_model.joblib
-- isolation_forest_model.joblib
-- model_metadata.json
-- anomaly_metadata.json
+## Hybrid Final Score
+
+The final score blends:
+- rules score
+- supervised fraud probability
+- anomaly score
+
+Example:
+
+`final_score = (0.30 * rules) + (0.45 * model) + (0.25 * anomaly)`

@@ -7,11 +7,12 @@ from src.common.paths import RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data
 from src.models.anomaly_inference import FraudAnomalyService
 from src.models.inference import FraudModelService
+from src.scoring.hybrid_engine import HybridFraudScoringEngine
 from src.scoring.risk_engine import FraudRiskEngine
 
 app = FastAPI(
     title="FinShield Fraud Detection API",
-    version="0.5.0",
+    version="0.6.0",
     description="Production-style fraud detection platform for fintech",
 )
 
@@ -26,6 +27,10 @@ def get_model_service() -> FraudModelService:
 
 def get_anomaly_service() -> FraudAnomalyService:
     return FraudAnomalyService()
+
+
+def get_hybrid_engine() -> HybridFraudScoringEngine:
+    return HybridFraudScoringEngine()
 
 
 class TransactionPayload(BaseModel):
@@ -45,7 +50,7 @@ def root():
     return {
         "message": "FinShield Fraud Detection API is running",
         "environment": settings.app_env,
-        "version": "0.5.0",
+        "version": "0.6.0",
     }
 
 
@@ -149,6 +154,26 @@ def score_with_anomaly(payload: TransactionPayload):
 
     return {
         "message": "Anomaly score generated successfully",
+        "features": features,
+        "result": result,
+    }
+
+
+@app.post("/score/hybrid")
+def score_with_hybrid(payload: TransactionPayload):
+    history_df = read_csv_data(str(RAW_DATA_DIR / "transactions_sample.csv"))
+    history_df = basic_cleaning(history_df)
+
+    features = build_realtime_features(
+        payload=payload.model_dump(),
+        customer_history=history_df,
+        merchant_history=history_df,
+    )
+
+    result = get_hybrid_engine().score(features)
+
+    return {
+        "message": "Hybrid fraud score generated successfully",
         "features": features,
         "result": result,
     }

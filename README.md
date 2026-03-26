@@ -47,6 +47,13 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - normalized anomaly scoring
 - anomaly-based review recommendation
 
+### Section 6
+- hybrid fraud scoring engine
+- weighted fusion of rules, model, and anomaly
+- final fraud score
+- final decisioning
+- hybrid scoring API endpoint
+
 ## Stack
 - Python
 - FastAPI
@@ -58,32 +65,36 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - Docker
 - GitHub Actions
 
-## Modeling Overview
+## Hybrid Scoring Overview
 
-### Supervised Models
-- Logistic Regression baseline
-- XGBoost classifier
+FinShield combines three signals:
 
-### Anomaly Model
-- Isolation Forest
+### 1. Rules
+Business-defined fraud logic with triggered explanations.
 
-### Inputs
-- amount
-- time-based features
-- velocity features
-- customer behavior features
-- merchant risk features
-- geo/device features
+### 2. Supervised model
+Probability of known fraud patterns.
 
-### Outputs
-#### Supervised
-- fraud probability
-- binary fraud prediction
+### 3. Anomaly model
+Suspicion score for unknown or unusual patterns.
 
-#### Anomaly
-- raw anomaly score
-- normalized anomaly score
-- anomaly recommendation
+## Final Score
+
+```text
+final_score =
+0.30 * normalized_rule_score
++ 0.45 * model_probability
++ 0.25 * anomaly_score
+```
+Then multiplied by 100 for a 0–100 risk score
+
+Decisioning
+
+0–39 → approve
+
+40–69 → review
+
+70–100 → block
 
 ## Run locally
 
@@ -116,7 +127,7 @@ POST /score/rules
 Sample scoring payload
 
 {
-  "transaction_id": "txn_live_005",
+  "transaction_id": "txn_live_006",
   "customer_id": "cust_002",
   "merchant_id": "mrch_002",
   "amount": 12000.0,

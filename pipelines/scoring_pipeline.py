@@ -6,6 +6,7 @@ from src.common.paths import RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data
 from src.models.anomaly_inference import FraudAnomalyService
 from src.models.inference import FraudModelService
+from src.scoring.hybrid_engine import HybridFraudScoringEngine
 from src.scoring.risk_engine import FraudRiskEngine
 
 
@@ -36,11 +37,13 @@ def run_scoring_pipeline() -> dict:
     rule_result = FraudRiskEngine().score(realtime_features)
     model_result = FraudModelService().predict(realtime_features)
     anomaly_result = FraudAnomalyService().predict(realtime_features)
+    hybrid_result = HybridFraudScoringEngine().score(realtime_features)
 
     result = {
         "rule_result": rule_result,
         "model_result": model_result,
         "anomaly_result": anomaly_result,
+        "hybrid_result": hybrid_result,
     }
 
     logger.info(f"Scoring pipeline result: {result}")

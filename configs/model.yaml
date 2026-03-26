@@ -55,6 +55,17 @@ anomaly:
   n_estimators: 200
   review_threshold: 0.65
 
+hybrid:
+  weights:
+    rules: 0.30
+    model: 0.45
+    anomaly: 0.25
+
+  thresholds:
+    approve_max: 39
+    review_max: 69
+    block_min: 70
+
 risk_bands:
   approve_max: 29
   review_max: 69

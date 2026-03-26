@@ -33,3 +33,12 @@ Runs the anomaly detection model and returns:
 - normalized anomaly score
 - anomaly label
 - review recommendation
+
+### POST /score/hybrid
+Runs the hybrid fraud engine and returns:
+- rule score
+- fraud probability
+- anomaly score
+- final weighted score
+- final decision
+- reasons
