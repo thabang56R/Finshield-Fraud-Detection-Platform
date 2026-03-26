@@ -21,4 +21,6 @@ src/common/paths.py
 src/data/ingestion.py
 src/data/schema.py
 src/data/validation.py
+src/rules/engine.py
+src/scoring/risk_engine.py
 src/utils/helpers.py

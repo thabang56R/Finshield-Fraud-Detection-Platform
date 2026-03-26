@@ -20,3 +20,9 @@ Runs the rule-based fraud scoring engine and returns:
 - triggered rules
 - decision
 - top reasons
+
+### POST /score/model
+Runs the supervised fraud model and returns:
+- fraud probability
+- predicted label
+- model threshold

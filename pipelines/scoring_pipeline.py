@@ -1,7 +1,10 @@
+from __future__ import annotations
+
 from features.realtime_features import build_realtime_features
 from src.common.logger import logger
 from src.common.paths import RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data
+from src.models.inference import FraudModelService
 from src.scoring.risk_engine import FraudRiskEngine
 
 
@@ -30,13 +33,20 @@ def run_scoring_pipeline() -> dict:
     )
 
     risk_engine = FraudRiskEngine()
-    risk_result = risk_engine.score(realtime_features)
+    rule_result = risk_engine.score(realtime_features)
 
-    logger.info(f"Realtime features generated: {realtime_features}")
-    logger.info(f"Risk result generated: {risk_result}")
+    model_service = FraudModelService()
+    model_result = model_service.predict(realtime_features)
+
+    result = {
+        "rule_result": rule_result,
+        "model_result": model_result,
+    }
+
+    logger.info(f"Scoring pipeline result: {result}")
     logger.info("Scoring pipeline completed")
 
-    return risk_result
+    return result
 
 
 if __name__ == "__main__":

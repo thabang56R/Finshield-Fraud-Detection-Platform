@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "finshield-fraud-detection-platform"
-version = "0.1.0"
+version = "0.4.0"
 description = "Production-style fraud detection platform for fintech using Python, FastAPI, ML, and MLOps."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.14"
 authors = [
   { name = "Thabang Rakeng" }
 ]
@@ -26,9 +26,7 @@ dependencies = [
   "loguru>=0.7.2",
   "great-expectations>=1.0.0",
   "pytest>=8.3.2",
-  "httpx>=0.27.0",
-  "jupyter>=1.0.0",
-  "notebook>=7.2.1"
+  "httpx>=0.27.0"
 ]
 
 [project.optional-dependencies]
