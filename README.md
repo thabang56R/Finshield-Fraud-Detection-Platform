@@ -276,7 +276,7 @@ finshield-fraud-detection-platform/
 ├── Makefile
 ├── pyproject.toml
 └── README.md
-```
+
 ---
 🧪 Fraud Intelligence Layers
 🟦 Rules Engine
