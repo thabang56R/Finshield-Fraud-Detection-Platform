@@ -16,7 +16,7 @@ data:
 
 experiment:
   random_state: 42
-  mlflow_tracking_uri: file:./mlruns
+  mlflow_tracking_uri: sqlite:///mlflow.db
   mlflow_experiment_name: finshield-fraud-detection
 
 monitoring:

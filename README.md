@@ -276,251 +276,261 @@ finshield-fraud-detection-platform/
 ├── pyproject.toml
 └── README.md
 
-🧪 Fraud Intelligence Layers
-🟦 Rules Engine
 
-The rules engine assigns weighted fraud scores based on business logic.
 
-Example rules:
+# 🎯 What This System Does
 
-high_amount
-foreign_high_amount
-rapid_repeat_activity
-merchant_fraud_hotspot
-new_device_high_amount
-🟩 Supervised Model
+Given a transaction, FinShield can:
 
-The supervised model predicts the probability that a transaction is fraudulent.
+* detect fraud using learned patterns 🧠
+* detect suspicious unknown behavior 🕵️
+* apply business fraud rules 📏
+* combine everything into a **final decision** ⚖️
+* explain **why** the decision was made 🔍
 
-Current models:
+---
 
-Logistic Regression
-XGBoost
-🟪 Anomaly Model
+# 🧪 Live Demo (Add Screenshots Here)
 
-The anomaly model captures suspicious behavior not seen in training labels.
+### 🔹 Swagger API
 
-Current model:
+👉 `http://127.0.0.1:8000/docs`
 
-Isolation Forest
-🟥 Hybrid Engine
+📸 Add screenshot here:
 
-The hybrid engine combines all three signals into a final fraud score.
+```
+/docs/screenshots/swagger-ui.png
+```
 
-Example formula:
+---
 
-final_score =
-0.30 * normalized_rule_score
-+ 0.45 * model_probability
-+ 0.25 * anomaly_score
+### 🔹 Hybrid Fraud Scoring Example
 
-Then scaled to a 0–100 risk score.
+📥 Input:
 
-🚦 Decisioning Logic
-Final Score	Decision
-0–39	Approve ✅
-40–69	Review ⚠️
-70–100	Block ⛔
-🧾 API Endpoints
-Core service
-GET /
-GET /health
-Feature generation
-POST /features/realtime
-Rules
-POST /rules/evaluate
-POST /score/rules
-Models
-POST /score/model
-POST /score/anomaly
-Hybrid scoring
-POST /score/hybrid
-Operations
-GET /model/info
-GET /monitoring/report
-📦 Example Hybrid Scoring Payload
+```json
 {
-  "transaction_id": "txn_live_006",
-  "customer_id": "cust_002",
-  "merchant_id": "mrch_002",
-  "amount": 12000.0,
-  "currency": "ZAR",
+  "amount": 12000,
   "country": "ZA",
-  "device_type": "desktop",
-  "ip_address": "196.10.1.2",
-  "timestamp": "2026-03-21 10:30:00"
+  "device_type": "desktop"
 }
-🧠 Example Hybrid Response
+```
+
+📤 Output:
+
+```json
 {
-  "message": "Hybrid fraud score generated successfully",
-  "result": {
-    "transaction_id": "txn_live_006",
-    "rule_score": 95,
-    "fraud_probability": 0.84,
-    "anomaly_score": 0.78,
-    "final_score": 84.55,
-    "decision": "block",
-    "top_reasons": [
-      "high_amount",
-      "merchant_fraud_hotspot",
-      "high_model_probability",
-      "high_anomaly_score"
-    ]
-  }
+  "final_score": 84.55,
+  "decision": "block",
+  "top_reasons": [
+    "high_amount",
+    "merchant_fraud_hotspot",
+    "high_model_probability"
+  ]
 }
-🛠️ Tech Stack
-Backend
-Python
-FastAPI
-Pydantic
-Data / ML
-Pandas
-NumPy
-Scikit-learn
-XGBoost
-Monitoring / MLOps
-MLflow
-Loguru
-JSON audit logs
-Quality / Engineering
-Pytest
-Docker
-GitHub Actions
-🚀 Getting Started
-1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/finshield-fraud-detection-platform.git
-cd finshield-fraud-detection-platform
-2. Create and activate virtual environment
-Windows PowerShell
-py -3.13 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-macOS / Linux
-python3 -m venv .venv
-source .venv/bin/activate
-3. Install dependencies
-python -m pip install --upgrade pip
-python -m pip install -e .[dev]
-4. Run tests
+```
+
+---
+
+# 🧠 How It Works (Simple Flow)
+
+```text
+Transaction → Features → Rules + ML + Anomaly → Hybrid Score → Decision
+```
+
+---
+
+# 🏗️ Architecture (Real Industry Pattern)
+
+```text
+Raw Data
+   ↓
+Feature Engineering
+   ↓
+├── Rules Engine
+├── ML Model (XGBoost)
+└── Anomaly Model (Isolation Forest)
+   ↓
+Hybrid Scoring Engine
+   ↓
+Decision (Approve / Review / Block)
+   ↓
+API + Monitoring + Logs
+```
+
+---
+
+# 🧠 Core Concepts Demonstrated
+
+## 📈 Feature Engineering
+
+* Behavioral features (spend patterns)
+* Velocity features (transaction frequency)
+* Risk features (merchant fraud rate)
+* Context features (time, geo, device)
+
+---
+
+## 📏 Rules Engine
+
+* YAML-configurable
+* Explainable decisions
+* Instant fraud detection layer
+
+---
+
+## 🧠 Machine Learning
+
+* Logistic Regression (baseline)
+* XGBoost (primary)
+
+---
+
+## 🕵️ Anomaly Detection
+
+* Isolation Forest
+* Detects unknown fraud patterns
+
+---
+
+## ⚖️ Hybrid Scoring (REAL SYSTEM DESIGN)
+
+```text
+final_score =
+0.30 * rules
++ 0.45 * ML probability
++ 0.25 * anomaly score
+```
+
+---
+
+## 📡 Real-Time API
+
+* FastAPI-based scoring
+* Production-style endpoints
+
+---
+
+## 📊 MLOps & Monitoring
+
+* MLflow experiment tracking
+* Audit logs (every prediction tracked)
+* Drift reports
+* Model metadata endpoints
+
+---
+
+# 🔥 Key Features
+
+* Hybrid fraud detection system
+* Explainable decisions
+* Real-time scoring API
+* ML + anomaly detection
+* Monitoring + audit logging
+* CI/CD pipeline
+* Fully tested system
+
+
+
+
+---
+
+# 🚦 Decision System
+
+| Score  | Decision  |
+| ------ | --------- |
+| 0–39   | ✅ Approve |
+| 40–69  | ⚠️ Review |
+| 70–100 | ⛔ Block   |
+
+---
+
+# 🚀 Quick Start (1-Minute Setup)
+
+```bash
+pip install -e .[dev]
 pytest
-5. Train models
 python pipelines/training_pipeline.py
-6. Generate evaluation metadata
-python pipelines/evaluation_pipeline.py
-7. Run scoring pipeline
-python pipelines/scoring_pipeline.py
-8. Start the API
 python -m uvicorn apps.api.main:app --reload
-9. Open Swagger docs
+```
+
+👉 Open:
+
+```
 http://127.0.0.1:8000/docs
-🧰 Makefile Commands
-make install
-make test
-make train
-make evaluate
-make score
-make monitor
-make run-api
-📊 Monitoring and MLOps
-📈 MLflow
+```
 
-Experiment tracking artifacts are stored in:
+---
 
-mlruns/
-🧾 Audit Log
+# 📊 Outputs
 
-Prediction audit events are written to:
+| Type          | Location            |
+| ------------- | ------------------- |
+| MLflow runs   | `mlruns/`           |
+| Audit logs    | `logs/`             |
+| Drift reports | `reports/`          |
+| Models        | `models/artifacts/` |
 
-Open Swagger docs
-http://127.0.0.1:8000/docs
-🧰 Makefile Commands
-make install
-make test
-make train
-make evaluate
-make score
-make monitor
-make run-api
-📊 Monitoring and MLOps
-📈 MLflow
+---
 
-Experiment tracking artifacts are stored in:
+# 🧪 Testing
 
-mlruns/
-🧾 Audit Log
-
-Prediction audit events are written to:
-
-logs/prediction_audit.jsonl
-📉 Drift Report
-
-Monitoring reports are saved in:
-
-reports/drift_report.json
-🗃️ Model Artifacts
-
-Artifacts are saved in:
-
-models/artifacts/
-
-Generated files include:
-
-logistic_regression_model.joblib
-xgboost_model.joblib
-isolation_forest_model.joblib
-model_metadata.json
-anomaly_metadata.json
-🧪 Testing
-
-This project includes:
-
-unit tests
-integration tests
-API endpoint tests
-
-Run all tests with:
-
+```bash
 pytest
-📘 Documentation
+```
 
-Additional project docs live in:
+✔ Unit
+✔ Integration
+✔ API
 
-docs/api.md
-docs/architecture.md
-docs/model-card.md
-docs/runbook.md
+---
 
-🛣️ Roadmap
-✅ Completed
-project scaffolding
-feature engineering
-rules engine
-supervised model
-anomaly detection
-hybrid engine
-FastAPI scoring
-monitoring outputs
-audit logging
-MLflow tracking
-🔜 Future Enhancements
-feature store integration
-model calibration
-cost-based threshold tuning
-SHAP explainability
-database-backed audit storage
-Redis caching
-streaming fraud events
-advanced drift detection
-dashboard for fraud monitoring
+# 🧑‍💻 Skills Demonstrated
 
-📜 License
+This project shows ability in:
 
-This project is for educational and portfolio use.
-Add your preferred license here, for example:
+* Machine Learning Engineering
+* Backend Development (FastAPI)
+* Data Engineering (pipelines)
+* MLOps (MLflow, monitoring)
+* System Design
+* Fraud Detection Domain
 
-MIT License
-👨‍💻 Author
+---
 
-Thabang Rakeng
+# 🛣️ Next Improvements (Production Path)
+
+* Feature store (Feast)
+* SHAP explainability
+* Streaming fraud detection (Kafka)
+* Dashboard (React)
+* Cloud deployment (AWS/GCP)
+
+---
+
+# 👨‍💻 Author
+
+**Thabang Rakeng**
+
+---
+
+# ⭐ Recruiter Note
+
+This project is intentionally built to demonstrate:
+
+✔ real-world ML system thinking
+✔ production pipeline design
+✔ hybrid decision systems
+✔ clean architecture
+
+
+
+---
+
+# ⭐ Give It a Star
+
+If this helped or impressed you, ⭐ the repo.
+
 
 
 
