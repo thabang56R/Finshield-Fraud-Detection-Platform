@@ -115,6 +115,7 @@ Operational Layer
         ├── Audit Logs
         ├── Monitoring Reports
         └── MLflow Experiment Tracking
+```
 
 ## 🧠 Core Fraud Detection Concepts Used
 
@@ -211,7 +212,7 @@ The platform includes production-style observability features:
 - ✅ Docker + GitHub Actions CI  
 
 🗂️ Project Structure
-
+```
 finshield-fraud-detection-platform/
 ├── apps/
 │   ├── api/
@@ -275,7 +276,8 @@ finshield-fraud-detection-platform/
 ├── Makefile
 ├── pyproject.toml
 └── README.md
-
+```
+---
 🧪 Fraud Intelligence Layers
 🟦 Rules Engine
 
@@ -288,6 +290,9 @@ foreign_high_amount
 rapid_repeat_activity
 merchant_fraud_hotspot
 new_device_high_amount
+
+---
+
 🟩 Supervised Model
 
 The supervised model predicts the probability that a transaction is fraudulent.
@@ -303,6 +308,7 @@ The anomaly model captures suspicious behavior not seen in training labels.
 Current model:
 
 Isolation Forest
+
 🟥 Hybrid Engine
 
 The hybrid engine combines all three signals into a final fraud score.
