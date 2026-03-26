@@ -16,3 +16,9 @@ data:
 
 experiment:
   random_state: 42
+  mlflow_tracking_uri: file:./mlruns
+  mlflow_experiment_name: finshield-fraud-detection
+
+monitoring:
+  audit_log_file: logs/prediction_audit.jsonl
+  reports_dir: reports

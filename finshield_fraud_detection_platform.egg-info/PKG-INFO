@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: finshield-fraud-detection-platform
-Version: 0.4.0
+Version: 0.7.0
 Summary: Production-style fraud detection platform for fintech using Python, FastAPI, ML, and MLOps.
 Author: Thabang Rakeng
 Requires-Python: <3.14,>=3.11
@@ -20,6 +20,7 @@ Requires-Dist: loguru>=0.7.2
 Requires-Dist: great-expectations>=1.0.0
 Requires-Dist: pytest>=8.3.2
 Requires-Dist: httpx>=0.27.0
+Requires-Dist: mlflow>=2.16.2
 Provides-Extra: dev
 Requires-Dist: black>=24.8.0; extra == "dev"
 Requires-Dist: ruff>=0.6.2; extra == "dev"
@@ -60,6 +61,28 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - rule-based approve / review / block decisions
 - API endpoints for rules evaluation and scoring
 
+### Section 4
+- supervised fraud model training pipeline
+- logistic regression baseline
+- XGBoost primary classifier
+- evaluation metrics
+- saved model artifacts
+- supervised model inference endpoint
+
+### Section 5
+- Isolation Forest anomaly detection
+- saved anomaly artifacts
+- anomaly inference endpoint
+- normalized anomaly scoring
+- anomaly-based review recommendation
+
+### Section 6
+- hybrid fraud scoring engine
+- weighted fusion of rules, model, and anomaly
+- final fraud score
+- final decisioning
+- hybrid scoring API endpoint
+
 ## Stack
 - Python
 - FastAPI
@@ -67,42 +90,48 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - NumPy
 - Scikit-learn
 - XGBoost
-- Great Expectations
 - Pytest
 - Docker
 - GitHub Actions
 
-## Rule Engine Overview
+## Hybrid Scoring Overview
 
-Each rule includes:
-- name
-- description
-- condition
-- weight
-- action
+FinShield combines three signals:
 
-Example:
+### 1. Rules
+Business-defined fraud logic with triggered explanations.
 
-```yaml
-- name: foreign_high_amount
-  description: Foreign transaction combined with a high amount
-  condition: "is_foreign_transaction == 1 and is_high_amount == 1"
-  weight: 35
-  action: "block"
+### 2. Supervised model
+Probability of known fraud patterns.
 
-  Decision Bands
+### 3. Anomaly model
+Suspicion score for unknown or unusual patterns.
 
-- approve: low rule score, no serious rule triggered
+## Final Score
 
-- review: medium risk score or suspicious combinations
+```text
+final_score =
+0.30 * normalized_rule_score
++ 0.45 * model_probability
++ 0.25 * anomaly_score
+```
+Then multiplied by 100 for a 0–100 risk score
 
-- block: high score or block-level rules triggered
+Decisioning
 
-Run locally
+0–39 → approve
 
+40–69 → review
+
+70–100 → block
+
+## Run locally
+
+```bash
 pip install -e .[dev]
 pytest
 python pipelines/training_pipeline.py
+python pipelines/evaluation_pipeline.py
 python pipelines/scoring_pipeline.py
 python -m uvicorn apps.api.main:app --reload
 
@@ -127,7 +156,7 @@ POST /score/rules
 Sample scoring payload
 
 {
-  "transaction_id": "txn_live_003",
+  "transaction_id": "txn_live_006",
   "customer_id": "cust_002",
   "merchant_id": "mrch_002",
   "amount": 12000.0,

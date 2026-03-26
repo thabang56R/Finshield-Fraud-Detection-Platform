@@ -8,6 +8,12 @@ Returns basic service metadata.
 ### GET /health
 Returns health status for the API.
 
+### GET /model/info
+Returns supervised and anomaly model metadata.
+
+### GET /monitoring/report
+Generates and returns a simple monitoring/drift report.
+
 ### POST /features/realtime
 Generates realtime fraud features from a live transaction payload using historical transaction data.
 

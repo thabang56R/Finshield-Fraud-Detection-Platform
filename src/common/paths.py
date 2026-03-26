@@ -20,6 +20,8 @@ SAMPLES_DATA_DIR = DATA_DIR / "samples"
 
 MODEL_ARTIFACTS_DIR = MODELS_DIR / "artifacts"
 LOGS_DIR = ROOT_DIR / "logs"
+REPORTS_DIR = ROOT_DIR / "reports"
+MLRUNS_DIR = ROOT_DIR / "mlruns"
 
 for directory in [
     RAW_DATA_DIR,
@@ -28,5 +30,7 @@ for directory in [
     SAMPLES_DATA_DIR,
     MODEL_ARTIFACTS_DIR,
     LOGS_DIR,
+    REPORTS_DIR,
+    MLRUNS_DIR,
 ]:
     directory.mkdir(parents=True, exist_ok=True)

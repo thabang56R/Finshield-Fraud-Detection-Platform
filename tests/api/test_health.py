@@ -13,6 +13,23 @@ def test_health_endpoint():
     assert data["status"] == "ok"
 
 
+def test_model_info_endpoint():
+    run_training_pipeline()
+    response = client.get("/model/info")
+    assert response.status_code == 200
+    data = response.json()
+    assert "supervised_model_metadata" in data
+    assert "anomaly_model_metadata" in data
+
+
+def test_monitoring_report_endpoint():
+    response = client.get("/monitoring/report")
+    assert response.status_code == 200
+    data = response.json()
+    assert "report" in data
+    assert "report_path" in data
+
+
 def test_realtime_feature_endpoint():
     payload = {
         "transaction_id": "txn_live_001",

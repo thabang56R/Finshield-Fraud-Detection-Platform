@@ -6,6 +6,7 @@ from src.common.config import load_yaml_config
 from src.common.logger import logger
 from src.models.anomaly_inference import FraudAnomalyService
 from src.models.inference import FraudModelService
+from src.monitoring.audit import write_audit_event
 from src.scoring.risk_engine import FraudRiskEngine
 
 
@@ -72,6 +73,21 @@ class HybridFraudScoringEngine:
             "model_result": model_result,
             "anomaly_result": anomaly_result,
         }
+
+        write_audit_event(
+            event_type="hybrid_score",
+            payload={
+                "transaction_id": result["transaction_id"],
+                "customer_id": result["customer_id"],
+                "merchant_id": result["merchant_id"],
+                "rule_score": result["rule_score"],
+                "fraud_probability": result["fraud_probability"],
+                "anomaly_score": result["anomaly_score"],
+                "final_score": result["final_score"],
+                "decision": result["decision"],
+                "top_reasons": result["top_reasons"],
+            },
+        )
 
         logger.info(f"Hybrid fraud scoring result: {result}")
         return result

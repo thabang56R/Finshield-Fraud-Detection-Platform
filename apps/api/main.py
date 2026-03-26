@@ -1,18 +1,20 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from apps.monitoring.monitor import run_monitoring
 from features.realtime_features import build_realtime_features
 from src.common.config import settings
 from src.common.paths import RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data
 from src.models.anomaly_inference import FraudAnomalyService
 from src.models.inference import FraudModelService
+from src.monitoring.model_registry import load_anomaly_metadata, load_model_metadata
 from src.scoring.hybrid_engine import HybridFraudScoringEngine
 from src.scoring.risk_engine import FraudRiskEngine
 
 app = FastAPI(
     title="FinShield Fraud Detection API",
-    version="0.6.0",
+    version="0.7.0",
     description="Production-style fraud detection platform for fintech",
 )
 
@@ -50,7 +52,7 @@ def root():
     return {
         "message": "FinShield Fraud Detection API is running",
         "environment": settings.app_env,
-        "version": "0.6.0",
+        "version": "0.7.0",
     }
 
 
@@ -61,6 +63,19 @@ def health_check():
         "service": "finshield-api",
         "environment": settings.app_env,
     }
+
+
+@app.get("/model/info")
+def get_model_info():
+    return {
+        "supervised_model_metadata": load_model_metadata(),
+        "anomaly_model_metadata": load_anomaly_metadata(),
+    }
+
+
+@app.get("/monitoring/report")
+def get_monitoring_report():
+    return run_monitoring()
 
 
 @app.post("/features/realtime")

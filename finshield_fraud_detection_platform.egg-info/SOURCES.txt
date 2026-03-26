@@ -21,6 +21,15 @@ src/common/paths.py
 src/data/ingestion.py
 src/data/schema.py
 src/data/validation.py
+src/models/__init__.py
+src/models/anomaly.py
+src/models/anomaly_inference.py
+src/models/evaluate.py
+src/models/inference.py
+src/models/preprocessing.py
+src/models/train.py
+src/monitoring/audit.py
 src/rules/engine.py
+src/scoring/hybrid_engine.py
 src/scoring/risk_engine.py
 src/utils/helpers.py

@@ -30,3 +30,7 @@ def load_yaml_config(filename: str) -> dict[str, Any]:
 
     with open(config_path, "r", encoding="utf-8") as file:
         return yaml.safe_load(file) or {}
+
+
+def get_base_config() -> dict[str, Any]:
+    return load_yaml_config("base.yaml")
