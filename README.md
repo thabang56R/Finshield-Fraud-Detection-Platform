@@ -115,6 +115,7 @@ Operational Layer
         ├── Audit Logs
         ├── Monitoring Reports
         └── MLflow Experiment Tracking
+```
 
 ## 🧠 Core Fraud Detection Concepts Used
 
@@ -211,7 +212,7 @@ The platform includes production-style observability features:
 - ✅ Docker + GitHub Actions CI  
 
 🗂️ Project Structure
-
+```
 finshield-fraud-detection-platform/
 ├── apps/
 │   ├── api/
@@ -276,11 +277,29 @@ finshield-fraud-detection-platform/
 ├── pyproject.toml
 └── README.md
 
+<<<<<<< HEAD
+=======
+---
+🧪 Fraud Intelligence Layers
+🟦 Rules Engine
+>>>>>>> 566900bbc01cb6b576161df73e6773a282de7e7e
 
 
 # 🎯 What This System Does
 
+<<<<<<< HEAD
 Given a transaction, FinShield can:
+=======
+high_amount
+foreign_high_amount
+rapid_repeat_activity
+merchant_fraud_hotspot
+new_device_high_amount
+
+---
+
+🟩 Supervised Model
+>>>>>>> 566900bbc01cb6b576161df73e6773a282de7e7e
 
 * detect fraud using learned patterns 🧠
 * detect suspicious unknown behavior 🕵️
@@ -296,7 +315,13 @@ Given a transaction, FinShield can:
 
 👉 `http://127.0.0.1:8000/docs`
 
+<<<<<<< HEAD
 📸 Add screenshot here:
+=======
+Isolation Forest
+
+🟥 Hybrid Engine
+>>>>>>> 566900bbc01cb6b576161df73e6773a282de7e7e
 
 ```
 /docs/screenshots/swagger-ui.png
