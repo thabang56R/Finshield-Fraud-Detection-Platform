@@ -1,9 +1,8 @@
-import pandas as pd
-
 from features.realtime_features import build_realtime_features
 from src.common.logger import logger
 from src.common.paths import RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data
+from src.scoring.risk_engine import FraudRiskEngine
 
 
 def run_scoring_pipeline() -> dict:
@@ -30,11 +29,16 @@ def run_scoring_pipeline() -> dict:
         merchant_history=history_df,
     )
 
+    risk_engine = FraudRiskEngine()
+    risk_result = risk_engine.score(realtime_features)
+
     logger.info(f"Realtime features generated: {realtime_features}")
+    logger.info(f"Risk result generated: {risk_result}")
     logger.info("Scoring pipeline completed")
 
-    return realtime_features
+    return risk_result
 
 
 if __name__ == "__main__":
-    run_scoring_pipeline()
+    result = run_scoring_pipeline()
+    print(result)

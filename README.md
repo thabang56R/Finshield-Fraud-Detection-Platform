@@ -3,13 +3,11 @@
 A production-style fraud detection platform for fintech use cases, built with Python, FastAPI, machine learning, and MLOps principles.
 
 ## Vision
-
 FinShield aims to simulate how real fintech fraud systems are structured in practice: reliable data ingestion, validation, feature engineering, model pipelines, API scoring, monitoring, and explainability.
 
 ## Completed So Far
 
 ### Section 1
-
 - production-ready project structure
 - config management
 - logging
@@ -19,7 +17,6 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - Docker and CI
 
 ### Section 2
-
 - offline batch fraud feature engineering
 - realtime feature generation
 - customer velocity features
@@ -28,8 +25,14 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - geo and device risk features
 - feature preview API endpoint
 
-## Stack
+### Section 3
+- YAML-configurable fraud rules engine
+- weighted rule scoring
+- explainable triggered reasons
+- rule-based approve / review / block decisions
+- API endpoints for rules evaluation and scoring
 
+## Stack
 - Python
 - FastAPI
 - Pandas
@@ -41,47 +44,68 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - Docker
 - GitHub Actions
 
-## Feature Engineering
+## Rule Engine Overview
 
-### Time Features
+Each rule includes:
+- name
+- description
+- condition
+- weight
+- action
 
-- transaction hour
-- transaction day of week
-- weekend flag
-- night transaction flag
+Example:
 
-### Velocity Features
+```yaml
+- name: foreign_high_amount
+  description: Foreign transaction combined with a high amount
+  condition: "is_foreign_transaction == 1 and is_high_amount == 1"
+  weight: 35
+  action: "block"
 
-- customer transaction counts over 1, 7, and 30 day windows
-- customer amount sums over 1, 7, and 30 day windows
+  Decision Bands
 
-### Customer Behavior Features
+- approve: low rule score, no serious rule triggered
 
-- previous transaction count
-- average historical amount
-- historical amount standard deviation
-- current amount deviation
-- amount z-score
-- minutes since previous transaction
+- review: medium risk score or suspicious combinations
 
-### Merchant Risk Features
+- block: high score or block-level rules triggered
 
-- previous merchant transaction count
-- previous merchant fraud count
-- previous merchant fraud rate
-- previous merchant average amount
+Run locally
 
-### Geo and Device Features
-
-- foreign transaction flag
-- high amount flag
-- new device for customer flag
-
-## Run locally
-
-```bash
 pip install -e .[dev]
 pytest
 python pipelines/training_pipeline.py
+python pipelines/scoring_pipeline.py
 python -m uvicorn apps.api.main:app --reload
-```
+
+API Docs
+
+http://127.0.0.1:8000/docs
+
+Main Endpoints
+
+Realtime features
+
+POST /features/realtime
+
+Rules evaluation
+
+POST /rules/evaluate
+
+Rule-based scoring
+
+POST /score/rules
+
+Sample scoring payload
+
+{
+  "transaction_id": "txn_live_003",
+  "customer_id": "cust_002",
+  "merchant_id": "mrch_002",
+  "amount": 12000.0,
+  "currency": "ZAR",
+  "country": "ZA",
+  "device_type": "desktop",
+  "ip_address": "196.10.1.2",
+  "timestamp": "2026-03-21 10:30:00"
+}

@@ -1,0 +1,10 @@
+model:
+  type: hybrid
+  target: is_fraud
+  test_size: 0.2
+  random_state: 42
+
+risk_bands:
+  approve_max: 29
+  review_max: 69
+  block_min: 70
