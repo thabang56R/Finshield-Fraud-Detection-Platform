@@ -211,7 +211,7 @@ The platform includes production-style observability features:
 - ✅ Unit, integration, and API tests  
 - ✅ Docker + GitHub Actions CI  
 
-🗂️ Project Structure
+### 🗂️ Project Structure
 ```
 finshield-fraud-detection-platform/
 ├── apps/
@@ -277,19 +277,9 @@ finshield-fraud-detection-platform/
 ├── pyproject.toml
 └── README.md
 
-<<<<<<< HEAD
-=======
----
-🧪 Fraud Intelligence Layers
-🟦 Rules Engine
->>>>>>> 566900bbc01cb6b576161df73e6773a282de7e7e
 
+🎯 What This System Does
 
-# 🎯 What This System Does
-
-<<<<<<< HEAD
-Given a transaction, FinShield can:
-=======
 high_amount
 foreign_high_amount
 rapid_repeat_activity
@@ -297,9 +287,6 @@ merchant_fraud_hotspot
 new_device_high_amount
 
 ---
-
-🟩 Supervised Model
->>>>>>> 566900bbc01cb6b576161df73e6773a282de7e7e
 
 * detect fraud using learned patterns 🧠
 * detect suspicious unknown behavior 🕵️
@@ -309,27 +296,19 @@ new_device_high_amount
 
 ---
 
-# 🧪 Live Demo (Add Screenshots Here)
+# 🧪 Live Demo 
 
-### 🔹 Swagger API
+ 🔹 Swagger API
 
 👉 `http://127.0.0.1:8000/docs`
 
-<<<<<<< HEAD
-📸 Add screenshot here:
-=======
-Isolation Forest
 
-🟥 Hybrid Engine
->>>>>>> 566900bbc01cb6b576161df73e6773a282de7e7e
 
-```
-/docs/screenshots/swagger-ui.png
-```
+
 
 ---
 
-### 🔹 Hybrid Fraud Scoring Example
+🔹 Hybrid Fraud Scoring Example
 
 📥 Input:
 
