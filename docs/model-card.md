@@ -1,11 +1,14 @@
 # Model Card
 
 ## Model Purpose
-This supervised model predicts the probability that a transaction is fraudulent based on engineered behavioral, merchant, time, and device features.
+FinShield now uses two machine learning layers:
+- supervised fraud classification
+- anomaly detection for unseen suspicious behavior
 
 ## Models Implemented
 - Logistic Regression baseline
 - XGBoost primary classifier
+- Isolation Forest anomaly detector
 
 ## Input Features
 - transaction amount
@@ -15,23 +18,30 @@ This supervised model predicts the probability that a transaction is fraudulent 
 - merchant risk features
 - geo/device features
 
-## Output
+## Outputs
+### Supervised model
 - fraud probability
 - binary fraud prediction
+
+### Anomaly model
+- raw anomaly score
+- normalized anomaly score
+- anomaly review recommendation
 
 ## Training Setup
 - time-aware split using non-shuffled train/test split
 - baseline threshold: 0.5
+- anomaly review threshold from config
 
 ## Limitations
 - trained on a small demo dataset
-- not yet calibrated for real production thresholds
+- anomaly score is not yet fused with supervised probability
 - no delayed chargeback labels yet
 - no concept drift handling yet
 
 ## Next Improvements
-- threshold tuning by business cost
+- hybrid score fusion
 - calibration
-- class imbalance tuning
-- cross-validation
+- threshold tuning by cost
 - MLflow tracking
+- drift monitoring

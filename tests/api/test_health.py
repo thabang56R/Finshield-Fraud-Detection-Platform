@@ -97,3 +97,26 @@ def test_score_model_endpoint():
     data = response.json()
     assert "result" in data
     assert "fraud_probability" in data["result"]
+
+
+def test_score_anomaly_endpoint():
+    run_training_pipeline()
+
+    payload = {
+        "transaction_id": "txn_live_005",
+        "customer_id": "cust_002",
+        "merchant_id": "mrch_002",
+        "amount": 12000.0,
+        "currency": "ZAR",
+        "country": "ZA",
+        "device_type": "desktop",
+        "ip_address": "196.10.1.2",
+        "timestamp": "2026-03-21 10:30:00",
+    }
+
+    response = client.post("/score/anomaly", json=payload)
+    assert response.status_code == 200
+
+    data = response.json()
+    assert "result" in data
+    assert "normalized_anomaly_score" in data["result"]

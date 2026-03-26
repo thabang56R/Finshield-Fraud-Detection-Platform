@@ -26,3 +26,10 @@ Runs the supervised fraud model and returns:
 - fraud probability
 - predicted label
 - model threshold
+
+### POST /score/anomaly
+Runs the anomaly detection model and returns:
+- raw anomaly score
+- normalized anomaly score
+- anomaly label
+- review recommendation

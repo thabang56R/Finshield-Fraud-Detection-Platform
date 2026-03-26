@@ -40,6 +40,13 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - saved model artifacts
 - supervised model inference endpoint
 
+### Section 5
+- Isolation Forest anomaly detection
+- saved anomaly artifacts
+- anomaly inference endpoint
+- normalized anomaly scoring
+- anomaly-based review recommendation
+
 ## Stack
 - Python
 - FastAPI
@@ -51,11 +58,14 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - Docker
 - GitHub Actions
 
-## Supervised Modeling Overview
+## Modeling Overview
 
-### Models
+### Supervised Models
 - Logistic Regression baseline
 - XGBoost classifier
+
+### Anomaly Model
+- Isolation Forest
 
 ### Inputs
 - amount
@@ -66,8 +76,14 @@ FinShield aims to simulate how real fintech fraud systems are structured in prac
 - geo/device features
 
 ### Outputs
+#### Supervised
 - fraud probability
 - binary fraud prediction
+
+#### Anomaly
+- raw anomaly score
+- normalized anomaly score
+- anomaly recommendation
 
 ## Run locally
 
@@ -100,7 +116,7 @@ POST /score/rules
 Sample scoring payload
 
 {
-  "transaction_id": "txn_live_004",
+  "transaction_id": "txn_live_005",
   "customer_id": "cust_002",
   "merchant_id": "mrch_002",
   "amount": 12000.0,

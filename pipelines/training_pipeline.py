@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 
 import joblib
-import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from features.batch_features import build_batch_features
@@ -11,6 +10,7 @@ from src.common.config import load_yaml_config
 from src.common.logger import logger
 from src.common.paths import MODEL_ARTIFACTS_DIR, PROCESSED_DATA_DIR, RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data, validate_required_columns
+from src.models.anomaly import train_anomaly_model
 from src.models.evaluate import evaluate_classifier
 from src.models.preprocessing import get_feature_columns
 from src.models.train import train_models
@@ -24,6 +24,7 @@ def run_training_pipeline() -> dict:
     random_state = int(config["model"]["random_state"])
     test_size = float(config["model"]["test_size"])
     threshold = float(config["training"]["probability_threshold"])
+    anomaly_review_threshold = float(config["anomaly"]["review_threshold"])
 
     raw_file_path = RAW_DATA_DIR / "transactions_sample.csv"
     processed_file_path = PROCESSED_DATA_DIR / "transactions_features.csv"
@@ -57,9 +58,28 @@ def run_training_pipeline() -> dict:
     joblib.dump(trained.baseline_pipeline, MODEL_ARTIFACTS_DIR / "logistic_regression_model.joblib")
     joblib.dump(trained.primary_pipeline, MODEL_ARTIFACTS_DIR / "xgboost_model.joblib")
 
+    anomaly_trained = train_anomaly_model(X_train=X_train, random_state=random_state)
+    joblib.dump(anomaly_trained.pipeline, MODEL_ARTIFACTS_DIR / "isolation_forest_model.joblib")
+
+    raw_train_scores = anomaly_trained.pipeline.named_steps["model"].score_samples(
+        anomaly_trained.pipeline.named_steps["preprocessor"].transform(X_train)
+    )
+
+    anomaly_metadata = {
+        "model_name": config["training"]["anomaly_model"],
+        "review_threshold": anomaly_review_threshold,
+        "raw_score_min": float(raw_train_scores.min()),
+        "raw_score_max": float(raw_train_scores.max()),
+        "feature_columns": selected_features,
+    }
+
+    with open(MODEL_ARTIFACTS_DIR / "anomaly_metadata.json", "w", encoding="utf-8") as f:
+        json.dump(anomaly_metadata, f, indent=2)
+
     metadata = {
         "baseline_model": config["training"]["baseline_model"],
         "primary_model": config["training"]["primary_model"],
+        "anomaly_model": config["training"]["anomaly_model"],
         "target": target_col,
         "threshold": threshold,
         "feature_columns": selected_features,
@@ -74,7 +94,10 @@ def run_training_pipeline() -> dict:
     logger.info(f"Saved model artifacts to: {MODEL_ARTIFACTS_DIR}")
     logger.info("Training pipeline completed")
 
-    return metadata
+    return {
+        "supervised_metadata": metadata,
+        "anomaly_metadata": anomaly_metadata,
+    }
 
 
 if __name__ == "__main__":

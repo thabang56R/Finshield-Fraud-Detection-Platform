@@ -4,6 +4,7 @@ from features.realtime_features import build_realtime_features
 from src.common.logger import logger
 from src.common.paths import RAW_DATA_DIR
 from src.data.ingestion import basic_cleaning, read_csv_data
+from src.models.anomaly_inference import FraudAnomalyService
 from src.models.inference import FraudModelService
 from src.scoring.risk_engine import FraudRiskEngine
 
@@ -32,15 +33,14 @@ def run_scoring_pipeline() -> dict:
         merchant_history=history_df,
     )
 
-    risk_engine = FraudRiskEngine()
-    rule_result = risk_engine.score(realtime_features)
-
-    model_service = FraudModelService()
-    model_result = model_service.predict(realtime_features)
+    rule_result = FraudRiskEngine().score(realtime_features)
+    model_result = FraudModelService().predict(realtime_features)
+    anomaly_result = FraudAnomalyService().predict(realtime_features)
 
     result = {
         "rule_result": rule_result,
         "model_result": model_result,
+        "anomaly_result": anomaly_result,
     }
 
     logger.info(f"Scoring pipeline result: {result}")
