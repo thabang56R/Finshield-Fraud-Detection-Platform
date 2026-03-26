@@ -484,7 +484,9 @@ pytest
 ```
 
 ✔ Unit
+
 ✔ Integration
+
 ✔ API
 
 ---
@@ -516,6 +518,8 @@ This project shows ability in:
 
 **Thabang Rakeng**
 
+> Fullstack(MERN, dotNET| Ai/Ml developers
+
 ---
 
 # ⭐ Recruiter Note
@@ -523,8 +527,11 @@ This project shows ability in:
 This project is intentionally built to demonstrate:
 
 ✔ real-world ML system thinking
+
 ✔ production pipeline design
+
 ✔ hybrid decision systems
+
 ✔ clean architecture
 
 
@@ -536,19 +543,9 @@ This project is intentionally built to demonstrate:
 If this helped or impressed you, ⭐ the repo.
 
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-⭐ Final Note
+# ⭐ Final Note
 
 FinShield is built to showcase what a modern fraud detection platform can look like when engineering, ML, and MLOps are combined thoughtfully.
 
