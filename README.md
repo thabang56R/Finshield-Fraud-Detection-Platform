@@ -1,6 +1,7 @@
 # 🛡️ FinShield Fraud Detection Platform
 
 ![CI][(https:// github.com/thabang56R FinShield-Fraud-Detection-Platform/actions/workflows/ci. yml/badge.Svg)](https://github.com/thabang56R/FinShield-Fraud-Detection-Platform/actions/workflows/ci. yml/logo=githubactions)
+
 ![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-green?logo=fastapi)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?logo=scikitlearn)
