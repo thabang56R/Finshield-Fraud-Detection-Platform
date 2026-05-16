@@ -11,14 +11,9 @@ BASE_DIR = Path(**file**).resolve().parent.parent
 
 # ========================
 
-SECRET_KEY = os.environ.get(
-"SECRET_KEY",
-"django-insecure-dev-key"  # fallback for local only
-)
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 
 DEBUG = os.environ.get("DEBUG", "True") == "True"
-
-# Render hostname
 
 RENDER_HOST = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 
@@ -26,14 +21,14 @@ ALLOWED_HOSTS = [RENDER_HOST] if RENDER_HOST else ["127.0.0.1", "localhost"]
 
 CSRF_TRUSTED_ORIGINS = (
 [f"https://{RENDER_HOST}"] if RENDER_HOST else [
-"http://localhost:3000",
 "http://127.0.0.1:3000",
+"http://localhost:3000",
 ]
 )
 
 # ========================
 
-# APPLICATIONS
+# APPS
 
 # ========================
 
@@ -56,14 +51,18 @@ INSTALLED_APPS = [
 
 ]
 
+# ========================
+
+# MIDDLEWARE
+
+# ========================
+
 MIDDLEWARE = [
 'corsheaders.middleware.CorsMiddleware',
 'django.middleware.security.SecurityMiddleware',
-
-```
-# Whitenoise (must be high)
 'whitenoise.middleware.WhiteNoiseMiddleware',
 
+```
 'django.contrib.sessions.middleware.SessionMiddleware',
 'django.middleware.common.CommonMiddleware',
 'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,6 +74,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'newproject.urls'
+
+# ========================
+
+# TEMPLATES
+
+# ========================
 
 TEMPLATES = [
 {
@@ -188,7 +193,7 @@ CSRF_COOKIE_HTTPONLY = False
 
 # ========================
 
-# EMAIL (SAFE VERSION)
+# EMAIL
 
 # ========================
 
@@ -212,7 +217,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ========================
 
-# SECURITY (PRODUCTION ONLY)
+# SECURITY (PROD)
 
 # ========================
 

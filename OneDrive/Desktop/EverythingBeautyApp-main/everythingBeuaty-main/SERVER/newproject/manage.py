@@ -7,7 +7,6 @@ def main():
 """Run administrative tasks."""
 
 ```
-# Use deployment settings on Render, otherwise use local settings
 os.environ.setdefault(
     'DJANGO_SETTINGS_MODULE',
     'api.Deployment_settings'
